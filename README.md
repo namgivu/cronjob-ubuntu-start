@@ -1,6 +1,6 @@
 We want to show how cron job/cron task/cron tab be created and managed with Ubuntu 18
 
-Ubuntu image namgivu/ubuntu-pipenv:18.04-3.7
+Ubuntu image namgivu/ubuntu-pipenv:18.04-3.6
 ref. https://hub.docker.com/r/namgivu/ubuntu-pipenv
 
 Quickstart
