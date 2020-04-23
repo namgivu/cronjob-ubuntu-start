@@ -10,4 +10,10 @@ Quickstart
 
 # open shell prompt to it
 docker exec -it nn-cronjob-ubuntu-start bash
+
+# poll it aka run again
+docker exec nn-cronjob-ubuntu-start /app/bin/app.py
+
+# view log
+docker exec nn-cronjob-ubuntu-start cat /app/log/log.txt
 ```
