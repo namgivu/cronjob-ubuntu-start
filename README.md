@@ -3,6 +3,10 @@ We want to show how cron job/cron task/cron tab be created and managed with Ubun
 Ubuntu image namgivu/ubuntu-pipenv:18.04-3.6
 ref. https://hub.docker.com/r/namgivu/ubuntu-pipenv
 
+Installation
+- docker ref. bit.ly/nndockercompose
+- python 3.6 and pipenv ref. bit.ly/nnpipenv
+
 Quickstart
 ```bash
 # wire up a ubuntu 18 machine
