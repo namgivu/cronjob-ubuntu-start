@@ -1,3 +1,5 @@
+import os
+
 import requests
 from datetime import datetime
 import tzlocal
@@ -21,6 +23,8 @@ def run():
 
 
 def format_r(r):
+    os.environ['TZ'] = 'Asia/Singapore'
+
     s =''
     s+=f'{datetime.now(tzlocal.get_localzone()).strftime("%Y-%m-%d %H:%M:%S.%f %Z")} \n'  # timestamp with timezone ref. https://stackoverflow.com/a/31304264/248616
     s+=f'  status code {r.status_code} \n'
