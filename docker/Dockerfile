@@ -15,6 +15,10 @@ RUN pipenv sync
 # bundle app source
 COPY . .
 
+#TODO Trang script to add cronjob
+RUN echo 122
+RUN echo 333
+
 # run demo python file  #TODO we will run it via a cron task
 RUN /app/bin/run-main.sh
 
