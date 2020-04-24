@@ -16,11 +16,13 @@ RUN pipenv sync
 COPY . .
 
 #TODO Trang script to add cronjob
-RUN echo 122
-RUN echo 333
+RUN echo '* * * * * /bin/sh /app/bin/test.sh' >> mycron
+RUN chmod u+x /app/bin/test.sh
+RUN crontab mycron
 
 # run demo python file  #TODO we will run it via a cron task
 RUN /app/bin/run-main.sh
 
 # Default command when running container
 CMD tail -F `mktemp`
+CMD service cron start && tail -F /var/log/mysql/error.log
