@@ -15,13 +15,11 @@ RUN pipenv sync
 # bundle app source
 COPY . .
 
-#TODO Trang script to add cronjob
+#TODO make .sh path and .log path as input via environ
+# add cronjob to run .sh script
 RUN echo '* * * * * /bin/sh /app/bin/test.sh' >> mycron
 RUN chmod u+x /app/bin/test.sh
 RUN crontab mycron
-
-# run demo python file  #TODO we will run it via a cron task
-RUN /app/bin/run-main.sh
 
 # Default command when running container
 CMD tail -F `mktemp`
