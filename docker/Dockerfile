@@ -15,7 +15,7 @@ RUN pipenv sync
 # bundle app source
 COPY . .
 
-#TODO make .sh path and .log path as input via environ
+#TODO make .sh path and .log path as input via environ; param -e ref. https://docs.docker.com/engine/reference/commandline/run/
 # add cronjob to run .sh script
 RUN echo '* * * * * /bin/sh /app/bin/test.sh' >> mycron
 RUN chmod u+x /app/bin/test.sh
