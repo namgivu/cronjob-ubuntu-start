@@ -8,8 +8,8 @@ def run():
     url = 'https://cccd2c2e-6ef6-465e-b449-51388a0266de.mock.pstmn.io/api/v1/d2c/application/harvest-json'
     input_dict = {
         "azureFileShare": {
-            "shareName": "receivefromharvest",
-            "fileName" : "1223334444_55555"
+            "shareName": "some share name",
+            "fileName" : "some file name"
         }
     }
     # headers = { 'Content-Type': 'application/json' }  #TODO do we need this?
