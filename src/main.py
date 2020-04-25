@@ -5,8 +5,8 @@ from datetime import datetime
 import tzlocal
 
 def run():
-    url = 'https://cccd2c2e-6ef6-465e-b449-51388a0266de.mock.pstmn.io/api/v1/d2c/application/harvest-json'
-    input_dict = {
+    url = 'https://cccd2c2e-6ef6-465e-b449-51388a0266de.mock.pstmn.io/api/v1/d2c/application/harvest-json'  #TODO make this as input via .env
+    input_dict = {  #TODO make this as input via .env - may also need conversion from bash string to python dict
         "azureFileShare": {
             "shareName": "some share name",
             "fileName" : "some file name"
