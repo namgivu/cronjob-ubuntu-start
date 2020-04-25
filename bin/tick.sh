@@ -15,4 +15,4 @@ cmd="$SH/poll_vault/$POLL_SCRIPT"
 log="$AH/log/$POLL_SCRIPT.log"
     echo "$cmd >> $log"
     eval $cmd >> $log
-    tail $log -n1
+    tail $log -n11

@@ -23,7 +23,7 @@ ARG   POLL_SCRIPT
 # add cronjob to run tick script
 RUN chmod u+x $TICK_SCRIPT
 RUN chmod u+x $TICK_SCRIPT
-RUN echo "* * * * * POLL_SCRIPT=$POLL_SCRIPT $TICK_SCRIPT" >> $CRON_FILE
+RUN echo "* * * * * POLL_SCRIPT=$POLL_SCRIPT $TICK_SCRIPT 1>>/app/log/cron.log 2>&1" >> $CRON_FILE
 RUN     crontab $CRON_FILE
 
 # get cronjob running and keep running by tail any file
