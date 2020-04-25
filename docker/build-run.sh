@@ -35,4 +35,4 @@ CONTAINER_NAME=${CONTAINER_NAME:-'nn-cronjob-ubuntu-start'}      ; CONTAINER_NAM
 
 
 # aftermath
-docker ps | grep -E "IMAGE|$IMAGE_TAG|NAME|$CONTAINER_NAME"
+docker ps | grep -E "IMAGE|$IMAGE_TAG|NAME|$CONTAINER_NAME" --color=always
