@@ -17,9 +17,9 @@ COPY . .
 
 #TODO make .sh path and .log path as input via environ; param -e ref. https://docs.docker.com/engine/reference/commandline/run/
 # add cronjob to run .sh script
-RUN echo '* * * * * /bin/sh /app/bin/test.sh' >> mycron
+RUN echo '* * * * * /bin/sh /app/bin/test.sh' >> /tmp/mycron
 RUN chmod u+x /app/bin/test.sh
-RUN crontab mycron
+RUN crontab /tmp/mycron
 
 # Default command when running container
 CMD tail -F `mktemp`
