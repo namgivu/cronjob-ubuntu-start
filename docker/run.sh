@@ -3,6 +3,7 @@ CONTAINER_NAME=${CONTAINER_NAME:-'nn-cronjob-ubuntu-start'}
   NETWORK_NAME=${NETWORK_NAME:-'nn-cronjob-ubuntu-start-network'}
      IMAGE_TAG=${IMAGE_TAG:-'nn/cronjob-ubuntu-start:200424'}  #NOTE: must be same with ./docker/build.sh
 
+docker network rm  $NETWORK_NAME || true
 docker network create  --driver bridge  $NETWORK_NAME || true  # create network if not exists ref. https://stackoverflow.com/a/48643576/248616
 
 docker run --name $CONTAINER_NAME  --net $NETWORK_NAME  -d                      --restart unless-stopped    $IMAGE_TAG
