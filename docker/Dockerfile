@@ -15,12 +15,16 @@ RUN pipenv sync
 # bundle app source
 COPY . .
 
-#TODO make .sh path and .log path as input via environ; param -e ref. https://docs.docker.com/engine/reference/commandline/run/
-# add cronjob to run .sh script
-RUN echo '* * * * * /bin/sh /app/bin/test.sh' >> /tmp/mycron
-RUN chmod u+x /app/bin/test.sh
-RUN crontab /tmp/mycron
+# var in Docker file as ARG ref. https://vsupalov.com/docker-env-vars/#docker-image-build-time-variables
+ARG TICK_SCRIPT=/app/bin/tick.sh
+ARG   CRON_FILE=/tmp/mycron
+ARG   POLL_SCRIPT
 
-# Default command when running container
-CMD tail -F `mktemp`
-CMD service cron start && tail -F /var/log/mysql/error.log
+# add cronjob to run tick script
+RUN chmod u+x $TICK_SCRIPT
+RUN chmod u+x $TICK_SCRIPT
+RUN echo "* * * * * POLL_SCRIPT=$POLL_SCRIPT $TICK_SCRIPT" >> $CRON_FILE
+RUN     crontab $CRON_FILE
+
+# get cronjob running and keep running by tail any file
+CMD service cron start && tail -F `mktemp`
