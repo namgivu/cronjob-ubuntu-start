@@ -16,7 +16,7 @@ POLL_SCRIPT=nam.pollAzureStorage.sh ./bin/tick.sh
 # Quickstart 0th @ trang-echoNow.sh
 wire up the cron task under ubuntu 18.04
 ```bash
-./docker/down.sh ; POLL_SCRIPT=nam.pollAzureStorage.sh ./docker/build-run.sh
+./docker/down.sh ; POLL_SCRIPT=trang-echoNow.sh ./docker/build-run.sh
 ```
 
 afterward
