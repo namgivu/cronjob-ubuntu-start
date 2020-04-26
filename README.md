@@ -8,61 +8,42 @@ ref. https://hub.docker.com/r/namgivu/ubuntu-pipenv
 - docker ref. bit.ly/nndockercompose
 - python 3.6 and pipenv ref. bit.ly/nnpipenv
 
+
 # the tick.sh
+demo a tick
 ```bash
-POLL_SCRIPT=nam.pollAzureStorage.sh ./bin/tick.sh
-```
-
-# Quickstart 0th @ trang-echoNow.sh
-wire up the cron task under ubuntu 18.04
-```bash
-./docker/down.sh ; POLL_SCRIPT=trang-echoNow.sh ./docker/build-run.sh
-```
-
-afterward
-```bash
-# ensure log shows success
-docker logs nn-cronjob-ubuntu-start
-    o='
-    * Starting periodic command scheduler cron
-    ...done.
-    '
-
-# open shell prompt to it
-docker exec -it nn-cronjob-ubuntu-start bash
-
-    # view running cronjob
-    docker exec nn-cronjob-ubuntu-start crontab -l
-        o='
-        * * * * * POLL_SCRIPT=trang-echoNow.sh /bin/sh /app/bin/tick.sh
-        '
-
-
-# poll it aka run again
-docker exec     nn-cronjob-ubuntu-start bash -c "POLL_SCRIPT=trang-echoNow.sh /app/bin/tick.sh"
-
-# view log
-docker exec     nn-cronjob-ubuntu-start ls  /app/log/
-docker exec     nn-cronjob-ubuntu-start cat /app/log/trang-echoNow.sh.log
+POLL_SCRIPT=nam.pollAPI.sh ./bin/tick.sh
 ```
 
 
-# Quickstart 2nd @ nam.pollAzureStorage.sh
+# Quickstart
+Wire up the cron task under ubuntu 18.04 running `trang-echoNow.sh`
 ```bash
-./docker/down.sh ; CONTAINER_NAME='cronjob' POLL_SCRIPT='nam.pollAzureStorage.sh' ./docker/build-run.sh ;
-                   CONTAINER_NAME='cronjob' POLL_SCRIPT='nam.pollAzureStorage.sh' c="${CONTAINER_NAME}__${POLL_SCRIPT}" ; echo $c
+export CONTAINER_NAME='cronjob' ; export POLL_SCRIPT='trang-echoNow.sh' ; ./docker/down.sh ; ./docker/build-run.sh
+c="${CONTAINER_NAME}__${POLL_SCRIPT}" ; echo $c
+```
+
+Or wire up the cron task under ubuntu 18.04 running `nam.pollAPI.sh`
+```bash
+POLL_SCRIPT='nam.pollAPI.sh' ./docker/down.sh ; CONTAINER_NAME='cronjob' POLL_SCRIPT='nam.pollAPI.sh' ./docker/build-run.sh ;
+                                                CONTAINER_NAME='cronjob' POLL_SCRIPT='nam.pollAPI.sh' c="${CONTAINER_NAME}__${POLL_SCRIPT}" ; echo $c
+```
+
+After the container up, the cron will run as schedule every minute.
+Some commands at this stage to mange it as below
+```bash
     docker logs $c ;
     docker exec $c crontab -l ;
     
-    docker exec $c ls        /app/log/ ;
-    docker exec $c tail -n11 /app/log/nam.pollAzureStorage.sh.log ;
+    docker exec $c ls         /app/log/ ;
+    docker exec $c tail -n11 "/app/log/$POLL_SCRIPT.log" ;
 
-    docker exec $c tail -F /app/log/nam.pollAzureStorage.sh.log ;
+    docker exec $c tail -F /app/log/nam.pollAPI.sh.log ;
     
     # debug
     s='debug cron error';   docker exec $c cat /app/log/cron.log ;
-    s='debug poll';         docker exec $c /app/bin/poll_vault/nam.pollAzureStorage.sh ;
-    s='debug tick';         docker exec $c bash -c "POLL_SCRIPT=nam.pollAzureStorage.sh ./bin/tick.sh" ;
+    s='debug a poll run';   docker exec $c "/app/bin/poll_vault/$POLL_SCRIPT" ;
+    s='debug a tick run';   docker exec $c bash -c "POLL_SCRIPT=nam.pollAPI.sh ./bin/tick.sh" ;
 ```
 
 

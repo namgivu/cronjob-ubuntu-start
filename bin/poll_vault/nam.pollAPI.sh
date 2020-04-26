@@ -7,4 +7,4 @@ cd $AH
     #                                  app entry point
 cd - 1>/dev/null
 
-#TODO move nam.pollAzureStorage .sh script and py app into folder ./bin/poll_vault/nam.pollAzureStorage/
+#TODO move nam.pollAPI .sh script and py app into folder ./bin/poll_vault/nam.pollAPI/

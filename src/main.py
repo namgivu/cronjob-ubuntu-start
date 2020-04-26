@@ -5,14 +5,10 @@ from datetime import datetime
 import tzlocal
 
 def run():
-    url = 'https://cccd2c2e-6ef6-465e-b449-51388a0266de.mock.pstmn.io/api/v1/d2c/application/harvest-json'  #TODO make this as input via .env
-    input_dict = {  #TODO make this as input via .env - may also need conversion from bash string to python dict
-        "azureFileShare": {
-            "shareName": "some share name",
-            "fileName" : "some file name"
-        }
+    url = 'https://cccd2c2e-6ef6-465e-b449-51388a0266de.mock.pstmn.io/api/v1/d2c/application/harvest-json'
+    input_dict = {
+        "any": "json"
     }
-    # headers = { 'Content-Type': 'application/json' }  #TODO do we need this?
 
     res = requests.post(url=url, json=input_dict)  # res aka response
 
@@ -33,7 +29,7 @@ def format_r(r):
     return s
 
 
-if __name__ == '__main__':
+if __name__ == '__main__':  # only run below when executed from command line
     r = run()
     print(format_r(r) )
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-CONTAINER_NAME=${CONTAINER_NAME:-'nn-cronjob-ubuntu-start'}
+if [[ -z $CONTAINER ]]; then echo "Param :CONTAINER is required as \$1"; exit 1; fi
 
-docker stop    $CONTAINER_NAME || true
-docker rm   -f $CONTAINER_NAME || true
+docker stop    $CONTAINER || true
+docker rm   -f $CONTAINER || true
