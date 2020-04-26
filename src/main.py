@@ -33,7 +33,7 @@ def format_r(r):
     return s
 
 
-if __name__ == '__main__':
+if __name__ == '__main__':  # only run below when executed from command line
     r = run()
     print(format_r(r) )
 
