@@ -13,6 +13,5 @@ if [[ -z POLL_SCRIPT ]]; then echo "Param :POLL_SCRIPT is required as \$1 - plea
 
 cmd="$SH/poll_vault/$POLL_SCRIPT"
 log="$AH/log/$POLL_SCRIPT.log"
-    echo "$cmd >> $log"
-    eval $cmd >> $log
-    tail $log -n11
+
+eval $cmd >> $log
