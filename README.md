@@ -4,11 +4,10 @@ We want to show how cron job/cron task/cron tab be created and managed with Ubun
 Ubuntu image namgivu/ubuntu-pipenv:18.04-3.6
 ref. https://hub.docker.com/r/namgivu/ubuntu-pipenv
 
-Dockerfile creates cron task that has cron log at `/app/log/cron.log` that run `/app/bin/tick.sh` 
-Tick will run `/app/bin/poll_vault/:YOURPOLL.sh` that has log at `/applog/:YOURPOLL.sh.log`
-     that run `app/src/listen_for_new_file.py` which will scan for files on azure storage folder :EXISTING_SHARE_NAME
-                                               and with each file, send it to :BACKEND_ENDPOINT 
-
+# listener process-flow  
+Dockerfile creates cron task that runs ticker `/app/bin/tick.sh` and log to :cron_log `/app/log/cron.log` 
+That :ticker will run `/app/bin/poll_vault/:YOURPOLL.sh` and log to `/applog/:YOURPOLL.sh.log`
+                      that run `app/src/listen_for_new_file.py` which will scan for & process new files on azure storage
 
 # Quickstart
 Wire up the cron task under ubuntu 18.04 running `trang-echoNow.sh`
