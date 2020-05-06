@@ -6,7 +6,7 @@ ref. https://hub.docker.com/r/namgivu/ubuntu-pipenv
 
 # listener process-flow  
 Dockerfile creates cron task that runs ticker `/app/bin/tick.sh` and log to :cron_log `/app/log/cron.log` 
-That :ticker will run `/app/bin/poll_vault/:YOURPOLL.sh` and log to `/applog/:YOURPOLL.sh.log`
+That :ticker will run `/app/bin/poll_vault/:YOURPOLL.sh` and log to `/app/log/:YOURPOLL.sh.log`
                       that run `app/src/listen_for_new_file.py` which will scan for & process new files on azure storage
 
 # Quickstart
