@@ -1,4 +1,4 @@
-.idea/
-.venv/
-.python-version
-log/*
+docker/*
+README.md
+.gitignore
+_doc_/*
