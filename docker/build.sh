@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 docstring='
-SCRIPT=backup_vol_postgres.sh ./build.sh
+SCRIPT=ssh_cmd.sh ./build.sh
 
 --build-arg ref. https://vsupalov.com/docker-env-vars/#docker-image-build-time-variables
 '
@@ -15,5 +15,6 @@ IMAGE_TAG="$SCRIPT-cronjob"  # put in SCRIPT in image tag
 # BUILD
 docker image rm $IMAGE_TAG || true
     docker build \
+                --no-cache \
                 --build-arg SCRIPT=$SCRIPT \
                 --file "$SH/Dockerfile"  -t $IMAGE_TAG   $AH
