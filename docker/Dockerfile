@@ -1,10 +1,16 @@
-FROM ubuntu
+# ref https://dev.to/s1ntaxe770r/how-to-setup-ssh-within-a-docker-container-i5i
+FROM ubuntu:18.04
 
 WORKDIR /app
-
 COPY . .
+# setup cron & ssh
 RUN apt-get update && \
-    apt-get install cron -y
+    apt-get install cron -y && \
+    apt-get install nano sudo openssh-client -y && \
+    mkdir -p /root/.ssh && \
+    chmod 700 /root/.ssh && \
+    ssh-keyscan -H prototype.referreach.com  >> ~/.ssh/known_hosts
+
 # var in Docker file as ARG ref. https://vsupalov.com/docker-env-vars/#docker-image-build-time-variables
 ARG   LOG_SCRIPT=/app/bin/logs.sh
 ARG   CRON_FILE=/app/mycron
